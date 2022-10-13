@@ -80,7 +80,7 @@ const onNewCityClicked = ()=>{
           </Nav>
 
           <NewUserModal show={newUserShow} onHide={() => setNewUserShow(false)} />
-            <NewCityModal show={newCityShow} onHide={()=> setNewCityShow(false)}/>
+            {/* <NewCityModal show={newCityShow} onHide={()=> setNewCityShow(false)}/> */}
         {/* <DropdownButton id="dropdown-basic-button"
         title={
                <FontAwesomeIcon icon={faGear}/>
