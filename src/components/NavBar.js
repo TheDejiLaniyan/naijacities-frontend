@@ -1,6 +1,5 @@
 import {Image} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import img from '/img/nigeriamap.png'
 import {
            faRightFromBracket,
        } from "@fortawesome/free-solid-svg-icons"
@@ -10,15 +9,13 @@ import { useSendLogoutMutation } from '../features/auth/authApiSlice'
 import { useEffect, useState } from 'react'
 import LoginModal from './LoginModal'
 import RegisterModal from "./RegisterModal";
-import NewCityForm from '../features/cities/NewCityForm'
 import NavBarDropdown from './minorComponents/NavBarDropdown'
-const LOGIN_REGEX = /^\/naijacities(\/)?$/
-const DASH_REGEX = /^\/naijacities\/u(\/)?$/
-const USERS_REGEX = /^\/naijacities\/u\/users(\/)?$/
+// const LOGIN_REGEX = /^\/naijacities(\/)?$/
+// const DASH_REGEX = /^\/naijacities\/u(\/)?$/
+// const USERS_REGEX = /^\/naijacities\/u\/users(\/)?$/
 
 const NavBar = () => {
 
-    // const [settingsShow, setSettingsShow] = useState();
     const [registerShow, setRegisterShow] = useState(false);
     const [loginShow, setLoginShow] = useState(false);
    
@@ -40,10 +37,10 @@ const NavBar = () => {
       } 
     }, [isSuccess, navigate])
     
-    let dashClass = null
-    if ( !USERS_REGEX.test(pathname)) {
-        dashClass = "dash-header__container--small"
-    }
+    // let dashClass = null
+    // if ( !USERS_REGEX.test(pathname)) {
+    //     dashClass = "dash-header__container--small"
+    // }
 
   const onLogoutClicked = () => {
     sendLogout()

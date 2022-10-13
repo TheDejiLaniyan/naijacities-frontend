@@ -7,7 +7,6 @@ import App from './App';
 import {Route, Routes, BrowserRouter} from 'react-router-dom' 
 import { store } from './app/store';
 import { Provider } from 'react-redux';
-import CustomToastContainer from './features/cities/components/CustomToastContainer';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

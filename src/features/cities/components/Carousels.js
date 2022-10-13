@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import img from './default-image.png'
 
 function ImageCarousel({city}) {
   const [index, setIndex] = useState(0);
@@ -13,7 +12,7 @@ function ImageCarousel({city}) {
     <div className='d-flex justify-content-center'>
         {
           // city.images.forEach((img, i) => {
-            <Carousel   onSelect={handleSelect} className='city-carousel__container' >
+            <Carousel activeIndex={index}  onSelect={handleSelect} className='city-carousel__container' >
               <Carousel.Item className="city-carousel__items">
                 <img
                   className="city-carousel__images"

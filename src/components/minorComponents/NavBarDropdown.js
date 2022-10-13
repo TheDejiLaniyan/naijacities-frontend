@@ -13,11 +13,11 @@ const USERS_REGEX = /^\/naijacities\/u\/users(\/)?$/
 function NavBarDropdown() {
 
     const [newUserShow, setNewUserShow] = useState(false);
-    const [editUserShow, setEditUserShow] = useState(false);
-    const [newCityShow, setNewCityShow] = useState(false)
+    // const [editUserShow, setEditUserShow] = useState(false);
+    // const [newCityShow, setNewCityShow] = useState(false)
 
     const navigate = useNavigate()
-  const { isTier2, isTier3 } = useAuth()
+  const {  isTier3 } = useAuth()
 
   const { pathname } = useLocation()
 
