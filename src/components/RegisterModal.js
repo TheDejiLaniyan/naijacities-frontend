@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../features/auth/authSlice'
@@ -17,7 +17,6 @@ function RegisterModal(props) {
    
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const userRef = useRef()  
     const errRef = useRef()
     const [errMsg, setErrMsg] = useState('')
     const [show, setShow] = useState(false);

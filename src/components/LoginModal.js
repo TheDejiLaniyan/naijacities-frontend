@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../features/auth/authSlice'
@@ -8,12 +8,12 @@ import { useLoginMutation } from '../features/auth/authApiSlice'
 import usePersist from '../hooks/usePersist';
 
 
-import {Col, Button, Modal,Row, Container } from 'react-bootstrap';
+import { Button, Modal, Container } from 'react-bootstrap';
 
 
 function LoginModal(props) {
 
-    const handleClose = () => setShow(false);
+    // const handleClose = () => setShow(false);
 
     const userRef = useRef()  
     const errRef = useRef()
@@ -71,7 +71,7 @@ function LoginModal(props) {
 
     if (isLoading) return <p>Loading...</p>
   return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+    <Modal {...props} show={show} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
             Login

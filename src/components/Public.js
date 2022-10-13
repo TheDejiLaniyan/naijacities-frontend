@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import { Button, Row, Col } from 'react-bootstrap'
 import LoginModal from './LoginModal'
 import RegisterModal from "./RegisterModal";
@@ -12,7 +11,6 @@ const Public = () => {
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
 
-    const {username, isTier2, isTier3} = useAuth()
     const date = new Date()
     const today = new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(date)
 

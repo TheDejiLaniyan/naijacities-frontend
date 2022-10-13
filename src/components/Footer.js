@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHouse } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate, useLocation } from 'react-router-dom'
 import useAuth from "../hooks/useAuth"
-import { Row, Col } from "react-bootstrap"
 
 const Footer = () => {
     const date = new Date()
