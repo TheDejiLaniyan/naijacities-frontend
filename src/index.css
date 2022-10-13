@@ -44,7 +44,7 @@ p{
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
-  background-image: url('/public/nationalTheatre.jpg');
+  background-image: url('/nationaltheatre.jpg');
   background-size: cover;
   background-position: top right;
   background-blend-mode: multiply;
