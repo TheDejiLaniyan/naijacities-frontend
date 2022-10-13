@@ -1,6 +1,6 @@
 import {Image} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import img from '/img/nigeriamap.png'
+// import img from '/img/nigeriamap.png'
 import {
            faRightFromBracket,
        } from "@fortawesome/free-solid-svg-icons"
@@ -115,7 +115,7 @@ const NavBar = () => {
             <div className='navbar-header__container'>
            <div className='navbar-header__title'>
             <Image 
-                        src={img}
+                        src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Flag-map_of_Nigeria.svg/1279px-Flag-map_of_Nigeria.svg.png'
                         href='/naijacities'
                         className='brand-button px-5'
                         alt='Nigerian Flag'
