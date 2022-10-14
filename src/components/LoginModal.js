@@ -71,7 +71,7 @@ function LoginModal(props) {
 
     if (isLoading) return <p>Loading...</p>
   return (
-    <Modal {...props} show={show} aria-labelledby="contained-modal-title-vcenter">
+    <Modal {...props}  aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
             Login
