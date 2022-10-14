@@ -3,7 +3,7 @@ import { setCredentials } from '../../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
     // baseUrl: 'http://localhost:3500/naijacities',
-    baseUrl: 'https://naijacities.herokuapp.com/naijacities',
+    baseUrl: 'https://git.heroku.com/naijacities-backend.git/naijacities',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.token
