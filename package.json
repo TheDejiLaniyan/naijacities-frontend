@@ -1,7 +1,8 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "/naijacities",
+  "homepage": ".",
+  // "homepage": "/naijacities",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
