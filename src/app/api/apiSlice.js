@@ -3,7 +3,7 @@ import { setCredentials } from '../../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
     // baseUrl: 'http://localhost:3500/naijacities',
-    baseUrl: 'https://naijacities-backend.onrender.com',
+    baseUrl: 'https://naijacities-backend.onrender.com/',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.token
