@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.04ad6e14.css",
+    "main.js": "/static/js/main.b803e916.js",
+    "static/media/nigeriamap.png": "/static/media/nigeriamap.1ac1b5eaad0eb61a1ab2.png",
+    "static/media/nationalTheatre.jpg": "/static/media/nationalTheatre.ab78b2dd43fb0f5b4ab4.jpg",
+    "index.html": "/index.html",
+    "main.04ad6e14.css.map": "/static/css/main.04ad6e14.css.map",
+    "main.b803e916.js.map": "/static/js/main.b803e916.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.04ad6e14.css",
+    "static/js/main.b803e916.js"
+  ]
+}
