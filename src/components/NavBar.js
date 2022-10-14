@@ -10,9 +10,7 @@ import { useEffect, useState } from 'react'
 import LoginModal from './LoginModal'
 import RegisterModal from "./RegisterModal";
 import NavBarDropdown from './minorComponents/NavBarDropdown'
-// const LOGIN_REGEX = /^\/naijacities(\/)?$/
-// const DASH_REGEX = /^\/naijacities\/u(\/)?$/
-// const USERS_REGEX = /^\/naijacities\/u\/users(\/)?$/
+
 
 const NavBar = () => {
 
@@ -33,7 +31,7 @@ const NavBar = () => {
 
   useEffect(() => {
       if (isSuccess){
-        navigate('/naijacities')
+        navigate('/')
       } 
     }, [isSuccess, navigate])
     
@@ -44,7 +42,7 @@ const NavBar = () => {
 
   const onLogoutClicked = () => {
     sendLogout()
-    navigate('/naijacities')
+    navigate('/')
   }
 
   const logoutButton = (
@@ -99,7 +97,7 @@ const NavBar = () => {
   }
 
   let navbarContent
-  if(pathname.includes('/naijacities/u')){
+  if(pathname.includes('/u')){
     navbarContent = loggedInContent
   } else {
     navbarContent =  notLoggedInContent
@@ -113,7 +111,7 @@ const NavBar = () => {
            <div className='navbar-header__title'>
             <Image 
                         src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Flag-map_of_Nigeria.svg/1279px-Flag-map_of_Nigeria.svg.png'
-                        href='/naijacities'
+                        href='/'
                         className='brand-button px-5'
                         alt='Nigerian Flag'
                         width="70" height="64"/>

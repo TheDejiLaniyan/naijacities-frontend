@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth'
 import NewUserModal from '../../features/users/NewUserModal'
 // import NewCityForm from '../../features/cities/NewCityForm';
 // import NewCityModal from '../../features/cities/NewCityModal'
-const USERS_REGEX = /^\/naijacities\/u\/users(\/)?$/
+const USERS_REGEX = /^\/u\/users(\/)?$/
 
 
 function NavBarDropdown() {
@@ -23,7 +23,7 @@ function NavBarDropdown() {
 
 
 const onNewCityClicked = ()=>{
-  navigate('/naijacities/u/cities/new')
+  navigate('/u/cities/new')
 }
 
     let newUserButton = null
@@ -40,11 +40,11 @@ const onNewCityClicked = ()=>{
  
    let userButton = null
    if (isTier3) {
-       if (!USERS_REGEX.test(pathname) && pathname.includes('/naijacities/u')) {
+       if (!USERS_REGEX.test(pathname) && pathname.includes('/u')) {
            userButton = (
               <>
                  <p className=""
-                   onClick={() => navigate('/naijacities/u/users')} >
+                   onClick={() => navigate('/u/users')} >
                      Users
                  </p>
               </>

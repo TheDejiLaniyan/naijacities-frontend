@@ -34,7 +34,7 @@ const NewCityModal = (props) => {
             setState('')
             setImages('')
             setImagePreview('')
-            navigate('/naijacities/u/cities') 
+            navigate('/u/cities') 
         }
     }, [isSuccess, navigate])
 

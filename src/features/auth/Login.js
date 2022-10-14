@@ -36,7 +36,7 @@ const Login = () => {
             dispatch(setCredentials({ accessToken }))
             setUsername('')
             setPassword('')
-            navigate('/naijacities/u')
+            navigate('/u')
         } catch (err) {
             if (!err.status) {
                 setErrMsg('No Server Response');
@@ -105,7 +105,7 @@ const Login = () => {
                 </form>
             </main>
             <footer>
-                <Link to="/naijacities">Back to Home</Link>
+                <Link to="/">Back to Home</Link>
             </footer>
         </section>
     )

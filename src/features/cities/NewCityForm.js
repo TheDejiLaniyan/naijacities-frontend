@@ -34,7 +34,7 @@ useEffect(() => {
       setState('')
       setName('')
       setCityImages('')
-      navigate('/naijacities/u/cities')
+      navigate('/u/cities')
   }
 }, [isSuccess, navigate])
 
@@ -130,7 +130,7 @@ const errClass = isError ? "errmsg" : "offscreen"
               Submit
             </Button>
                 <ToastContainer/>
-                <Button variant='success' onClick={()=>navigate('/naijacities/u/cities')}>
+                <Button variant='success' onClick={()=>navigate('/u/cities')}>
                   Back
                 </Button>
             </Form> 

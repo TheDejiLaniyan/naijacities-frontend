@@ -49,7 +49,7 @@ const Public = () => {
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aliquam officiis quis repudiandae quas unde expedita voluptate dolorum fugit. A nesciunt modi cupiditate voluptate voluptates repellat sunt, similique veniam ipsam.
                         </article>
                         <Button className='public__button'
-                                href='/naijacities/cities'>
+                                href='/cities'>
                             View Cities
                         </Button>
                         <br />

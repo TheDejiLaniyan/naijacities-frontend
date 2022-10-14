@@ -45,7 +45,7 @@ function LoginModal({}) {
             dispatch(setCredentials({ accessToken }))
             setUsername('')
             setPassword('')
-            navigate('/naijacities/u')
+            navigate('/u')
         } catch (err) {
             if (!err.status) {
                 setErrMsg('No Server Response');

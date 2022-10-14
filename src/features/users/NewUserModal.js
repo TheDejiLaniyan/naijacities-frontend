@@ -47,7 +47,7 @@ function NewUserModal(props) {
             setUsername('')
             setPassword('')
             setRoles([])
-            navigate('/naijacities/u/users') //changed
+            navigate('/u/users') //changed
         }
     }, [isSuccess, navigate])
 

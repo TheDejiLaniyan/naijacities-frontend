@@ -19,7 +19,7 @@ const App = () => (
   <>
    
         <Routes>
-          <Route path='/naijacities' element={<Layout/>}>
+          <Route path='/' element={<Layout/>}>
             {/* public routes */}
             <Route index element={<Public/>}/>
             <Route path='cities'>

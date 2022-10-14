@@ -11,10 +11,10 @@ const Footer = () => {
     const navigate = useNavigate()
     const { pathname } = useLocation()
 
-    const onGoHomeClicked = () => navigate('/naijacities/u')
+    const onGoHomeClicked = () => navigate('/u')
 
     let goHomeButton = null
-    if (pathname !== '/naijacities') {
+    if (pathname !== '/') {
         goHomeButton = (
             <button
                 className="dash-footer__button icon-button"

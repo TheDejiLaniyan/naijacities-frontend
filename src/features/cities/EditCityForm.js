@@ -29,7 +29,7 @@ const EditCityForm = ({city}) => {
           setName('')
           setState('')
           setCityImages('')
-          navigate(`/naijacities/u/cities`)
+          navigate(`/u/cities`)
       }
 
   }, [isSuccess, navigate])
@@ -116,7 +116,7 @@ const EditCityForm = ({city}) => {
             Submit
           </Button>
               <ToastContainer/>
-              <Button variant='success' onClick={()=>navigate('/naijacities/u/cities')}>
+              <Button variant='success' onClick={()=>navigate('/u/cities')}>
                 Back
               </Button>
     </Form> 

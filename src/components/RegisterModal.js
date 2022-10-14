@@ -70,7 +70,7 @@ function RegisterModal(props) {
             dispatch(setCredentials({ accessToken }))
             setUsername('')
             setPassword('')
-            navigate('/naijacities')
+            navigate('/')
         } catch (err) {
             if (!err.status) {
                 setErrMsg('No Server Response');

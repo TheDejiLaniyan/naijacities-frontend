@@ -20,7 +20,7 @@ const User = ({userId}) => {
 
     if (user) {
         const handleEdit = () => {
-            navigate(`/naijacities/u/users/${userId}`)
+            navigate(`/u/users/${userId}`)
         }
 
         // let editButton = null

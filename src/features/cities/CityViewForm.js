@@ -17,7 +17,7 @@ const CityViewForm = ({city}) => {
     const {username, status} = useAuth()
     const navigate = useNavigate()
     
-    const onGoHomeClicked = () => navigate('/naijacities/u/cities')
+    const onGoHomeClicked = () => navigate('/u/cities')
 
     const  goHomeButton = (
           <button
@@ -39,11 +39,11 @@ const CityViewForm = ({city}) => {
         error
     }] = useDeleteCityMutation()
 
-    const handleEdit = ()=> navigate(`/naijacities/u/cities/${city.id}/edit`)
+    const handleEdit = ()=> navigate(`/u/cities/${city.id}/edit`)
     
   const onDeleteCityClicked = async () => {
     await deleteCity({ id: city.id })
-    navigate('/naijacities/u/cities')
+    navigate('/u/cities')
 }
 
     const content = (

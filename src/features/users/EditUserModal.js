@@ -55,7 +55,7 @@ function EditUserModal({props, userId}) {
             setUsername('')
             setPassword('')
             setRoles([])
-            navigate('/naijacities/u/users')
+            navigate('//u/users')
         }
 
     }, [isSuccess, isDelSuccess, navigate])
