@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../features/auth/authSlice'
@@ -17,6 +17,7 @@ function LoginModal(props) {
 
     const userRef = useRef()  
     const errRef = useRef()
+    const location = useLocation()
     const [errMsg, setErrMsg] = useState('')
     const [show, setShow] = useState(false);
     const [username, setUsername] = useState('')
@@ -27,10 +28,6 @@ function LoginModal(props) {
     const dispatch = useDispatch()
 
     const [login, { isLoading }] = useLoginMutation()
-
-    // useEffect(() => {
-    //     userRef.current.focus()
-    // }, [])
 
     useEffect(() => {
         setErrMsg('');
@@ -48,7 +45,7 @@ function LoginModal(props) {
             dispatch(setCredentials({ accessToken }))
             setUsername('')
             setPassword('')
-            navigate('/u')
+            navigate(`/u${location.pathname}`)
         } catch (err) {
             if (!err.status) {
                 setErrMsg('No Server Response');

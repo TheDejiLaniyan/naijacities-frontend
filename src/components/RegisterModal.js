@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../features/auth/authSlice'
 import { useRegisterMutation } from '../features/auth/authApiSlice'
@@ -8,6 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../config/roles"
 import { Button, Modal, Container } from 'react-bootstrap';
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
@@ -21,11 +24,7 @@ function RegisterModal(props) {
     const [errMsg, setErrMsg] = useState('')
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    // const userRef = useRef()  
-    // const errRef = useRef()
-
     const [register, {isLoading}] = useRegisterMutation()
-
     const [username, setUsername] = useState('')
     const [validUsername, setValidUsername] = useState(false)
     const [password, setPassword] = useState('')
@@ -68,9 +67,11 @@ function RegisterModal(props) {
         try {
             const { accessToken } = await register({ username, password, roles }).unwrap()
             dispatch(setCredentials({ accessToken }))
+            handleClose()
             setUsername('')
             setPassword('')
             navigate('/')
+            toast.success('Successful! Please Login')
         } catch (err) {
             if (!err.status) {
                 setErrMsg('No Server Response');
@@ -113,7 +114,6 @@ function RegisterModal(props) {
         <Container>
         <main className="register">
             {/* <p className={errClass}>{error?.data?.message}</p> */}
-            <h3>New User</h3>
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form__title-row">
                     <div className="form__action-buttons">
@@ -124,6 +124,7 @@ function RegisterModal(props) {
                         >
                             <FontAwesomeIcon icon={faSave} style={{color:'black'}} />
                         </button>
+                        <ToastContainer autoClose={5000} />
                     </div>
                 </div>
                 <label className="form__label" htmlFor="username">
@@ -134,6 +135,7 @@ function RegisterModal(props) {
                     name="username"
                     type="text"
                     autoFocus
+                    required
                     autoComplete="off"
                     value={username}
                     onChange={onUsernameChanged}
@@ -147,6 +149,7 @@ function RegisterModal(props) {
                     name="password"
                     type="password"
                     value={password}
+                    required
                     onChange={onPasswordChanged}
                 />
 

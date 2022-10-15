@@ -35,10 +35,6 @@ const NavBar = () => {
       } 
     }, [isSuccess, navigate])
     
-    // let dashClass = null
-    // if ( !USERS_REGEX.test(pathname)) {
-    //     dashClass = "dash-header__container--small"
-    // }
 
   const onLogoutClicked = () => {
     sendLogout()

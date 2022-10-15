@@ -16,14 +16,14 @@ const Welcome = () => {
         <NavBar/>
             <div className="welcome__body">
             <Row >
-                <Col md={{span:6, offset:3}}>
+                <Col >
                 <main className="welcome__main p-4 ">
                     <h1>Welcome to Naija Cities</h1>
                     <article className='mb-3'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aliquam officiis quis repudiandae quas unde expedita voluptate dolorum fugit. A nesciunt modi cupiditate voluptate voluptates repellat sunt, similique veniam ipsam.
+                        <p>Your No. 1 website for information regarding Nigerian Cities</p>
                     </article>
                     <Button className='welcome__button'
-                            href="u/cities">
+                            href="/u/cities">
                         View Cities
                     </Button>
                     <br />

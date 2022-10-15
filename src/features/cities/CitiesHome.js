@@ -1,7 +1,7 @@
 import { useGetCitiesQuery } from "./citiesApiSlice"
 import { CardGroup } from "react-bootstrap"
 import NavBar from "../../components/NavBar"
-
+import Footer from "../../components/Footer"
 import City from "./City"
 const CitiesHome = () => {
   const {data: cities, isLoading, isSuccess, isError, error
@@ -33,6 +33,7 @@ const CitiesHome = () => {
               <CardGroup className="card__group-body">
             {cardContent}
             </CardGroup>
+            <Footer/>
               </div>
           </>
       )

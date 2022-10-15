@@ -73,17 +73,19 @@ p{
 }
 
 .public__header{
-
 width: 60%;
 }
 
+
+
 .public__main,
 .welcome__main{
-  
   flex-grow: 1;
+  min-width: 600px;
   border-bottom: 2px solid var(--BORDER-COLOR);
   padding: 1em ;
   margin-top: 4em;
+  word-wrap: break-word;
   /* position: relative;
   top: 40%; */
 }
@@ -111,9 +113,10 @@ width: 60%;
 }
 
 .public__footer,
-.welcome__footer{
+.footer{
   display: flex;
-  flex-direction: column;
+  background-color: var(--BGCOLOR);
+  flex-direction:column;
   font-size: 1rem;
   position: fixed;
   bottom: 0;
@@ -121,7 +124,7 @@ width: 60%;
   z-index: 1;
   color: #FFF;
   padding: 0.5em;
-  /* border-top: 1px solid var(--BORDER-COLOR); */
+  border-top: 1px solid var(--BORDER-COLOR);
   flex-flow: row nowrap;
   justify-content: flex-start;
   gap: 1em;
@@ -434,7 +437,7 @@ tr {
   top: -60px;
 }
 
-.city-carousel__body{
+.city-carousel__body-A{
   display: flex;
   justify-content: center;
   width: 100%;
@@ -467,20 +470,7 @@ tr {
     /* background-color: #FFF; */
 }
 
-.city-view__footer{
-  font-size: 1rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 100;
-  background-color:var(--BGCOLOR);
-  color: #FFF;
-  /* padding: 0.5em; */
-  /* border-top: 1px solid var(--BORDER-COLOR); */
-  /* flex-flow: row nowrap; */
-  /* justify-content: flex-start; */
-  /* gap: 1em; */
-}
+
 
 #nav-dropdown-dark-example{
   /* display: none; */
@@ -501,11 +491,6 @@ tr {
     overflow-y: scroll;
   }
 
-  .public__footer,
-  .welcome__footer{
-    display: block;
-  }
-
  .table{
   padding: 0;
  }
@@ -524,21 +509,21 @@ tr {
   font-size: 1.25em;
  }
 
- .welcome__footer{
-  /* display: flex; */
-  /* flex-direction: column; */
+ .footer{
+  display: block;
   font-size: 1rem;
-visibility: hidden;
+/* visibility: hidden; */
   position: fixed;
-  /* bottom: 0; */
+  background-color: transparent;
+  top: 0;
   width: 100%;
   z-index: 1;
   color: #FFF;
-  /* padding: 0.5em; */
-  /* border-top: 1px solid var(--BORDER-COLOR); */
-  /* flex-flow: row nowrap; */
   justify-content: flex-start;
   gap: 1em;
  }
+ .hidden__footer{
+  display: none;
+}
 }
 

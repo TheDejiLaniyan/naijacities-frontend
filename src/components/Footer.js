@@ -26,25 +26,21 @@ const Footer = () => {
         )
     }
     const content = (
-        <footer className="welcome__footer mx-3 mb-3" >
+        <footer className="footer" >
            
             <>
             <div className="mx-3">
             {goHomeButton}
             </div>
-            <div className="mx-3">
+            <div className="mx-3 hidden__footer">
             <p>Current User: {username}</p>            
             </div>
-            <div className="mx-3">
+            <div className="mx-3 hidden__footer">
             <p>Status: {status}</p>
             </div>
-            <div className="mx-3">
+            <div className="mx-3 hidden__footer">
             <p><p>Date: {today}</p></p>
             </div>
-            
-            
-            
-            
             </>
             </footer>
     )

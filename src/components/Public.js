@@ -42,11 +42,11 @@ const Public = () => {
             <LoginModal show={loginShow} onHide={() => setLoginShow(false)} />
             <RegisterModal show={registerShow} onHide={() => setRegisterShow(false)} />
             <Row>
-                <Col md={{span:6, offset:3}} >
+                <Col  className='public__container' >
                     <main className="public__main p-4 ">
                         <h3 className="public__title">Welcome to Naija Cities</h3>    
-                        <article className='mb-3'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aliquam officiis quis repudiandae quas unde expedita voluptate dolorum fugit. A nesciunt modi cupiditate voluptate voluptates repellat sunt, similique veniam ipsam.
+                        <article className='mb-3 public__article'>
+                        <p>Your No. 1 website for information regarding Nigerian Cities</p>
                         </article>
                         <Button className='public__button'
                                 href='/cities'>
