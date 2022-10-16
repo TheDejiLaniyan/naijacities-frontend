@@ -1,16 +1,13 @@
 import {Image} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-           faRightFromBracket,
-       } from "@fortawesome/free-solid-svg-icons"
+import {faRightFromBracket, faHouse} from "@fortawesome/free-solid-svg-icons"
 import {  useNavigate, useLocation, Link } from 'react-router-dom'
-
 import { useSendLogoutMutation } from '../features/auth/authApiSlice'
 import { useEffect, useState } from 'react'
 import LoginModal from './LoginModal'
 import RegisterModal from "./RegisterModal";
 import NavBarDropdown from './minorComponents/NavBarDropdown'
-
+import img from '../nationaltheatre.jpg'
 
 const NavBar = () => {
 
@@ -106,12 +103,14 @@ const NavBar = () => {
             <div className='navbar-header__container'>
            <div className='navbar-header__title'>
             <Image 
-                        src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Flag-map_of_Nigeria.svg/1279px-Flag-map_of_Nigeria.svg.png'
-                        href='/'
-                        className='brand-button px-5'
+                        src={img}
+                        className='px-5'
                         alt='Nigerian Flag'
                         width="70" height="64"/>
-                    <strong style={{color: 'white'}}>NaijaCities</strong>
+                    <strong style={{color: 'white'}} 
+                              className='brand-button'
+                              onClick={()=> navigate('/u')}>
+                                NaijaCities</strong>
             </div> 
             <nav className='navbar-header__nav'>
                             {navbarContent}  

@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useGetCitiesQuery } from './citiesApiSlice';
 import { memo } from 'react'
 
-function City({cityId}) {
+function IndividualCity({cityId}) {
 
   const navigate = useNavigate()
   const { city } = useGetCitiesQuery("citiesHome", {
@@ -15,8 +15,11 @@ function City({cityId}) {
           city: data?.entities[cityId]
       }),
   })
+  
+  
+  if(city){
+      const created = new Date(city.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })
 
-    if(city){
         return (
             <>
                 <div className='card-container' >
@@ -41,7 +44,8 @@ function City({cityId}) {
               </div>
              </section>
               <Card.Footer>
-                {city.username}
+                <p>Created on {created} by {city.author} </p>
+                
               </Card.Footer>
                 </Card>
                 </div>
@@ -50,6 +54,6 @@ function City({cityId}) {
     } else return null
 }
 
-const memoizedCity = memo(City)
+const memoizedCity = memo(IndividualCity)
 
 export default memoizedCity;

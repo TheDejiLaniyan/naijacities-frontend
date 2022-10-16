@@ -1,4 +1,4 @@
-const STATES = [
+const states = [
     {
         state: "Abia",
         lgas: ["Aba North", "Arochukwu", "Aba South", "Bende", "Isiala Ngwa North", "Ikwuano", "Isiala Ngwa South", "Isuikwuato", "Obi Ngwa", "Ohafia", "Osisioma", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu Nneochi"]
@@ -117,4 +117,4 @@ const STATES = [
 },  
 ]
 
-module.exports = {STATES}
+module.exports = states

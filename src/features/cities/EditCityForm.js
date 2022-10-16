@@ -7,6 +7,8 @@ import { faSave } from "@fortawesome/free-solid-svg-icons"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavBar from "../../components/NavBar"
+import states from "../../config/states"
+import Footer from "../../components/Footer"
 
 const EditCityForm = ({city}) => {
     const [updateCity, {
@@ -71,8 +73,9 @@ const EditCityForm = ({city}) => {
     <>
         <div className="body d-flex justify-content-center">
           <NavBar/>
+          <div className="form-container">
           <Form onSubmit={onSaveCityClicked} className='form'>
-            <h1>New User</h1>
+            <h1>Edit City</h1>
             <Form.Label htmlFor="inputPassword5">City Name</Form.Label>
             <Form.Control
               id="name"
@@ -87,15 +90,13 @@ const EditCityForm = ({city}) => {
             />
 
             <Form.Label htmlFor="inputPassword5">City State </Form.Label>
-            <Form.Control
-              id="state"
-              type='text'
-              name="state"
-              value={state}
-              required
-              onChange={onStateChanged}
-              aria-describedby="passwordHelpBlock"
-            />
+            <select name="state" id="state" value={state} onChange={onStateChanged}>
+              {
+                states.map((state)=>(
+                  <option>{state.state}</option>
+                ))
+              }
+              </select>
 
             <label>Images</label>
             <input
@@ -119,7 +120,9 @@ const EditCityForm = ({city}) => {
               <Button variant='success' onClick={()=>navigate('/u/cities')}>
                 Back
               </Button>
-    </Form> 
+          </Form> 
+          <Footer/>
+          </div>
         </div>
     </>
     )

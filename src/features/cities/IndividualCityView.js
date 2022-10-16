@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { selectCityById } from './citiesApiSlice'
 import CityViewForm from './CityViewForm'
 
-const CityView = () => {
+const IndividualCityView = () => {
     const { id } = useParams()
 
     const city = useSelector(state => selectCityById(state, id))
@@ -13,4 +13,4 @@ const CityView = () => {
     return content
 }
 
-export default CityView
+export default IndividualCityView

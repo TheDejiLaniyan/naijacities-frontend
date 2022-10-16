@@ -2,8 +2,9 @@ import { useGetCitiesQuery } from "./citiesApiSlice"
 import { CardGroup } from "react-bootstrap"
 import NavBar from "../../components/NavBar"
 import Footer from "../../components/Footer"
-import City from "./City"
-const CitiesHome = () => {
+import IndividualCity from './IndividualCity'
+
+const CitiesHomePage = () => {
   const {data: cities, isLoading, isSuccess, isError, error
 } = useGetCitiesQuery(undefined, {
     pollingInterval: 15000,
@@ -23,15 +24,15 @@ const CitiesHome = () => {
       const {ids} = cities
 
       const cardContent = ids?.length 
-        ? ids.map(cityId => <City key={cityId} cityId={cityId} /> )
+        ? ids.map(cityId => <IndividualCity key={cityId} cityId={cityId} /> )
         : null
 
       content = (
           <>
               <div className="body">
                 <NavBar/>
-              <CardGroup className="card__group-body">
-            {cardContent}
+            <CardGroup className="card__group-body">
+              {cardContent}
             </CardGroup>
             <Footer/>
               </div>
@@ -42,4 +43,4 @@ const CitiesHome = () => {
   return content
 }
 
-export default CitiesHome
+export default CitiesHomePage

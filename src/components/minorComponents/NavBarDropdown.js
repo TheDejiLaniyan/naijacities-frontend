@@ -13,12 +13,8 @@ const USERS_REGEX = /^\/u\/users(\/)?$/
 function NavBarDropdown() {
 
     const [newUserShow, setNewUserShow] = useState(false);
-    // const [editUserShow, setEditUserShow] = useState(false);
-    // const [newCityShow, setNewCityShow] = useState(false)
-
     const navigate = useNavigate()
-  const {  isTier3 } = useAuth()
-
+  const {  isTier3, isTier2 } = useAuth()
   const { pathname } = useLocation()
 
 
@@ -27,7 +23,7 @@ const onNewCityClicked = ()=>{
 }
 
     let newUserButton = null
-    if(isTier3){
+    if( isTier3){
      newUserButton = (
          <p>
              <p className=''
@@ -39,7 +35,7 @@ const onNewCityClicked = ()=>{
     }
  
    let userButton = null
-   if (isTier3) {
+   if ( isTier3) {
        if (!USERS_REGEX.test(pathname) && pathname.includes('/u')) {
            userButton = (
               <>
@@ -52,12 +48,16 @@ const onNewCityClicked = ()=>{
        }
    }
 
-   const NewCityButton = (
+   let NewCityButton = null
+   if(isTier3 || isTier2){
+   NewCityButton = (
     <p className='' onClick={onNewCityClicked}>
-        Add New Cities
+        New Cities
     </p>
   )
-  return (
+}
+
+return (
     <>
         
     <Nav>

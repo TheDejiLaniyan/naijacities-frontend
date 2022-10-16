@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react"
 import { useAddNewCityMutation } from "./citiesApiSlice"
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave } from "@fortawesome/free-solid-svg-icons"
+import useAuth from "../../hooks/useAuth"
+import states from '../../config/states'
 import { Form, Button, Image } from "react-bootstrap"
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavBar from "../../components/NavBar"
+import Footer from '../../components/Footer'
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
-const NewCityForm = () => {
+const NewCityForm = ({users}) => {
   const [addNewCity, {
     isLoading,
     isSuccess,
@@ -18,16 +20,13 @@ const NewCityForm = () => {
     error
 }] = useAddNewCityMutation()
 
-const successToast = () =>{
-  toast.success('Success!')
-} 
-const errorToast = () =>{
-  toast.error('Error!')
-}
 const navigate = useNavigate()
 const [name, setName] = useState('')
 const [state, setState] = useState('')
+const {username} = useAuth()
 const [cityImages, setCityImages] = useState('')
+// const [author, setAuthor] = useState('')
+// const author = username
 
 useEffect(() => {
   if (isSuccess) {
@@ -39,8 +38,11 @@ useEffect(() => {
 }, [isSuccess, navigate])
 
 
+
 const onNameChanged = e => setName(e.target.value)
 const onStateChanged = e => setState(e.target.value)
+
+const author = username
 
 const onFileChanged = (e) => {
   const file = e.target.files[0]
@@ -58,26 +60,24 @@ const previewFiles = (file)=>{
     setCityImages('')
   }
 }
- 
 
-const canSave = [ name, state, cityImages ] && !isLoading
+ 
+const canSave = [ name, state, cityImages, author ] && !isLoading
 
 
 const handleSubmit = async (e) => {
     e.preventDefault()
     if (canSave) {
         try{
-          await addNewCity({ name, state, images:cityImages })
-          successToast()
+          await addNewCity({ name, state, images:cityImages, author  })
         }catch(error){
           console.log(error)
-          errorToast()
+          toast.error(error)
         }
+      }
     }
-}
 
-
-const errClass = isError ? "errmsg" : "offscreen"
+    const errClass = isError ? "errmsg" : "offscreen"
 
   return (
       <>
@@ -85,7 +85,8 @@ const errClass = isError ? "errmsg" : "offscreen"
             <NavBar/>
            <div className="form-container">
            <Form onSubmit={handleSubmit} className='form'>
-              <h1>New User</h1>
+              <ToastContainer autoClose={5000}/>
+              <h1>New City</h1>
               <Form.Label htmlFor="inputPassword5">City Name</Form.Label>
               <Form.Control
                 id="name"
@@ -99,7 +100,7 @@ const errClass = isError ? "errmsg" : "offscreen"
                 aria-describedby="cityNameHelpBlock"
               />
 
-              <Form.Label htmlFor="inputPassword5">City State </Form.Label>
+              {/* 
               <Form.Control
                 id="state"
                 type='text'
@@ -108,7 +109,16 @@ const errClass = isError ? "errmsg" : "offscreen"
                 required
                 onChange={onStateChanged}
                 aria-describedby="passwordHelpBlock"
-              />
+              /> */}
+
+            <Form.Label htmlFor="inputPassword5">City State </Form.Label>
+            <select name="state" id="state" value={state} onChange={onStateChanged}>
+              {
+                states.map((state)=>(
+                  <option>{state.state}</option>
+                ))
+              }
+              </select>
 
               <label>Images</label>
               <input
@@ -125,7 +135,6 @@ const errClass = isError ? "errmsg" : "offscreen"
                           src={cityImages} alt='Image Preview'   />
                 </> : <p>Image Preview</p>}
               </section>
-
             <Button variant="primary" type="submit" onClick={handleSubmit} >
               Submit
             </Button>
@@ -135,6 +144,7 @@ const errClass = isError ? "errmsg" : "offscreen"
                 </Button>
             </Form> 
            </div>
+           <Footer/>
           </div>
       </>
     

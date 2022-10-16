@@ -7,11 +7,11 @@ import RequireAuth from './features/auth/RequireAuth';
 import {ROLES} from './config/roles'
 import './index.css'
 import DashLayout from './components/DashLayout'
-import Public from './components/Public'
+import PublicHomePage from './components/PublicHomePage'
 import Welcome from './components/Welcome'
-import CitiesHome from './features/cities/CitiesHome';
+import CitiesHomePage from './features/cities/CitiesHomePage';
 import NewCityForm from './features/cities/NewCityForm';
-import CityView from './features/cities/CityView';
+import IndividualCityView from './features/cities/IndividualCityView';
 import EditCity from './features/cities/EditCity'
 import EditUser from './features/users/EditUser'
 
@@ -21,11 +21,11 @@ const App = () => (
         <Routes>
           <Route path='/' element={<Layout/>}>
             {/* public routes */}
-            <Route index element={<Public/>}/>
+            <Route index element={<PublicHomePage/>}/>
             <Route path='cities'>
-              <Route index element={<CitiesHome/>}/>
+              <Route index element={<CitiesHomePage/>}/>
               <Route path=':id' >
-                <Route index element={<CityView/>}/>
+                <Route index element={<IndividualCityView/>}/>
               </Route>
             </Route>
               {/* protected routes */}
@@ -43,10 +43,10 @@ const App = () => (
                         </Route>
 
                         <Route path='cities'>
-                          <Route index element={<CitiesHome/>}/>
+                          <Route index element={<CitiesHomePage/>}/>
                           <Route path='new' element={<NewCityForm/>}/>
                           <Route path=':id'>
-                            <Route index element={<CityView/>}/>
+                            <Route index element={<IndividualCityView/>}/>
                             <Route path='edit' element={<EditCity/>}/>
                           </Route>
                         </Route>

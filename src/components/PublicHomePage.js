@@ -5,7 +5,7 @@ import RegisterModal from "./RegisterModal";
 import { useState } from "react";
 
 
-const Public = () => {
+const PublicHomePage = () => {
 
     
     const [loginShow, setLoginShow] = useState(false);
@@ -76,4 +76,4 @@ const Public = () => {
   return content
 }
 
-export default Public
+export default PublicHomePage

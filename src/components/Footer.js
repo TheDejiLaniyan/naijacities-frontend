@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faHouse } from "@fortawesome/free-solid-svg-icons"
+import { faBackward } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate, useLocation } from 'react-router-dom'
 import useAuth from "../hooks/useAuth"
 
@@ -11,7 +11,7 @@ const Footer = () => {
     const navigate = useNavigate()
     const { pathname } = useLocation()
 
-    const onGoHomeClicked = () => navigate('/u')
+    const onGoHomeClicked = () => navigate(-1)
 
     let goHomeButton = null
     if (pathname !== '/') {
@@ -21,7 +21,7 @@ const Footer = () => {
                 title="Home"
                 onClick={onGoHomeClicked}
             >
-                <FontAwesomeIcon icon={faHouse} />
+                <FontAwesomeIcon icon={faBackward} />
             </button>
         )
     }

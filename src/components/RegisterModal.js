@@ -79,7 +79,10 @@ function RegisterModal(props) {
                 setErrMsg('Missing Username or Password');
             } else if (err.status === 401) {
                 setErrMsg('Unauthorized');
-            } else {
+            } else if(err.status === 409){
+                setErrMsg('Duplicate Username')
+                toast.error('Duplicate Username! Please try again')
+            }else {
                 setErrMsg(err.data?.message);
             }
             errRef.current.focus();
