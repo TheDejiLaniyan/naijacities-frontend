@@ -23,6 +23,7 @@ function NewUserModal(props) {
 
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [validUsername, setValidUsername] = useState(false)
     const [password, setPassword] = useState('')
     const [validPassword, setValidPassword] = useState(false)
@@ -45,6 +46,7 @@ function NewUserModal(props) {
     useEffect(() => {
         if (isSuccess) {
             setUsername('')
+            setEmail('')
             setPassword('')
             setRoles([])
             navigate('/u/users') //changed
@@ -52,6 +54,7 @@ function NewUserModal(props) {
     }, [isSuccess, navigate])
 
     const onUsernameChanged = e => setUsername(e.target.value)
+    const onEmailChanged = e => setEmail(e.target.value)
     const onPasswordChanged = e => setPassword(e.target.value)
 
     const onRolesChanged = e => {
@@ -67,7 +70,7 @@ function NewUserModal(props) {
     const onSaveUserClicked = async (e) => {
         e.preventDefault()
         if (canSave) {
-            await addNewUser({ username, password, roles })
+            await addNewUser({ username, email, password, roles })
         }
     }
 
@@ -122,6 +125,20 @@ function NewUserModal(props) {
                     value={username}
                     onChange={onUsernameChanged}
                 />
+
+                <label className="form__label" htmlFor="email">
+                    Email: <span className="nowrap">[3-20 letters]</span></label>
+                <input
+                    className={`form__input ${validUserClass}`}
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoFocus
+                    autoComplete="off"
+                    value={email}
+                    onChange={onEmailChanged}
+                />
+                
 
                 <label className="form__label" htmlFor="password">
                     Password: <span className="nowrap">[4-12 chars incl. !@#$%]</span></label>

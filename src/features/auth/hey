@@ -1,19 +1,27 @@
 import { useRef, useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setCredentials } from './authSlice'
-import { useLoginMutation } from './authApiSlice'
+import { setCredentials } from '../../features/auth/authSlice'
+import { useLoginMutation } from '../../features/auth/authApiSlice'
+import usePersist from '../../hooks/usePersist';
+import { Button, Modal, Container } from 'react-bootstrap';
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {useFormik} from 'formik'
+import { loginSchema } from '../../Schemas/loginSchema'
 
-import usePersist from '../../hooks/usePersist'
 
-const Login = () => {
-    const userRef = useRef()
+function LoginModal(props) {
+
+    const location = useLocation()
+    const [show, setShow] = useState(false);
+    const [persist, setPersist] = usePersist()
+    const userRef = useRef()  
     const errRef = useRef()
+    const [errMsg, setErrMsg] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [errMsg, setErrMsg] = useState('')
-    const [persist, setPersist] = usePersist()
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -21,12 +29,12 @@ const Login = () => {
     const [login, { isLoading }] = useLoginMutation()
 
     useEffect(() => {
-        userRef.current.focus()
-    }, [])
-
-    useEffect(() => {
         setErrMsg('');
     }, [username, password])
+
+    useEffect(()=>{
+            setShow(true)
+    },[])
 
 
     const handleSubmit = async (e) => {
@@ -36,7 +44,7 @@ const Login = () => {
             dispatch(setCredentials({ accessToken }))
             setUsername('')
             setPassword('')
-            navigate('/u')
+            navigate(`/u${location.pathname}`)
         } catch (err) {
             if (!err.status) {
                 setErrMsg('No Server Response');
@@ -53,44 +61,50 @@ const Login = () => {
 
     const handleUserInput = (e) => setUsername(e.target.value)
     const handlePwdInput = (e) => setPassword(e.target.value)
+    
     const handleToggle = () => setPersist(prev => !prev)
 
     const errClass = errMsg ? "errmsg" : "offscreen"
 
     if (isLoading) return <p>Loading...</p>
-
-    const content = (
-        <section className="public">
-            <header>
-                <h1>Employee Login</h1>
-            </header>
-            <main className="login">
+  return (
+    <Modal {...props}  aria-labelledby="contained-modal-title-vcenter">
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+            Login
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="">
+        <Container>
+        <main className="login">
                 <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
 
-                <form className="form" onSubmit={handleSubmit}>
+                <form className="form " onSubmit={handleSubmit}>
                     <label htmlFor="username">Username:</label>
                     <input
-                        className="form__input"
+                        className="form__input "
                         type="text"
                         id="username"
                         ref={userRef}
                         value={username}
                         onChange={handleUserInput}
                         autoComplete="off"
+                        autoFocus
                         required
                     />
 
                     <label htmlFor="password">Password:</label>
                     <input
-                        className="form__input"
+                        className="form__input mb-3"
                         type="password"
                         id="password"
                         onChange={handlePwdInput}
                         value={password}
                         required
                     />
-                    <button className="form__submit-button">Sign In</button>
-
+                    <div className='d-flex justify-content-center align-items-center'>
+                        <button className="form__submit-button mb-3">Sign In</button>
+                    </div>
 
                     <label htmlFor="persist" className="form__persist">
                         <input
@@ -104,12 +118,13 @@ const Login = () => {
                     </label>
                 </form>
             </main>
-            <footer>
-                <Link to="/">Back to Home</Link>
-            </footer>
-        </section>
-    )
-
-    return content
+        </Container>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
 }
-export default Login
+
+export default LoginModal

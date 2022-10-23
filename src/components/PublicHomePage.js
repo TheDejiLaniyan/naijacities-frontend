@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button, Row, Col } from 'react-bootstrap'
-import LoginModal from './LoginModal'
-import RegisterModal from "./RegisterModal";
+import LoginModal from '../features/auth/LoginModal'
+import RegisterModal from "../features/auth/RegisterModal";
 import { useState } from "react";
 
 
@@ -18,26 +18,16 @@ const PublicHomePage = () => {
             <>
         <div className="body">
         <div className="public__body">
-            <header className="public__header">
-                <Row className="justify-content-md-center">
-                    <Col xs lg='2'>
-                        <p>
-                            <Link className=' nav-link' onClick={() => setLoginShow(true)}>
+            <header className="public__header">                    
+                        <p className='nav-link nav-link-padding' onClick={() => setLoginShow(true)}>
                                 Login
-                            </Link>
                         </p>
-                    </Col>
-                    <Col md='auto'>
-                    <p>
-                            <Link className=' nav-link' onClick={() => setRegisterShow(true)}>
+                    
+                    
+                    <p className='nav-link nav-link-padding' onClick={() => setRegisterShow(true)}>
                                 Register
-                            </Link>
                         </p>
-                    </Col>
-                    <Col xs lg='2'>
-                        <p className="nav-link mx-2">About</p>
-                    </Col>
-                </Row>
+                    <p className="nav-link nav-link-padding">About</p>
             </header>
             <LoginModal show={loginShow} onHide={() => setLoginShow(false)} />
             <RegisterModal show={registerShow} onHide={() => setRegisterShow(false)} />

@@ -1,72 +1,58 @@
 import { useRef, useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-
 import { useDispatch } from 'react-redux'
-import { setCredentials } from '../features/auth/authSlice'
-import { useLoginMutation } from '../features/auth/authApiSlice'
-
-import usePersist from '../hooks/usePersist';
-
-
+import { setCredentials } from '../../features/auth/authSlice'
+import { useLoginMutation } from '../../features/auth/authApiSlice'
+import usePersist from '../../hooks/usePersist';
 import { Button, Modal, Container } from 'react-bootstrap';
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {useFormik} from 'formik'
+import { loginSchema } from '../../Schemas/loginSchema'
 
 
 function LoginModal(props) {
 
-    // const handleClose = () => setShow(false);
-
+    const location = useLocation()
+    const [show, setShow] = useState(false);
+    const [persist, setPersist] = usePersist()
     const userRef = useRef()  
     const errRef = useRef()
-    const location = useLocation()
-    const [errMsg, setErrMsg] = useState('')
-    const [show, setShow] = useState(false);
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [persist, setPersist] = usePersist()
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const [login, { isLoading }] = useLoginMutation()
-
-    useEffect(() => {
-        setErrMsg('');
-    }, [username, password])
+    const [login] = useLoginMutation()
 
     useEffect(()=>{
             setShow(true)
     },[])
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const { accessToken } = await login({ username, password }).unwrap()
+    const onSubmit = async (values, actions)=>{
+        try{
+            const { accessToken } = await login(values).unwrap()
             dispatch(setCredentials({ accessToken }))
-            setUsername('')
-            setPassword('')
             navigate(`/u${location.pathname}`)
-        } catch (err) {
-            if (!err.status) {
-                setErrMsg('No Server Response');
-            } else if (err.status === 400) {
-                setErrMsg('Missing Username or Password');
-            } else if (err.status === 401) {
-                setErrMsg('Unauthorized');
-            } else {
-                setErrMsg(err.data?.message);
-            }
-            errRef.current.focus();
+            actions.resetForm()
+        }catch(err){
+
         }
     }
 
-    const handleUserInput = (e) => setUsername(e.target.value)
-    const handlePwdInput = (e) => setPassword(e.target.value)
     const handleToggle = () => setPersist(prev => !prev)
+    const {values, isSubmitting, setSubmitting, handleBlur, errors, handleChange, touched, handleSubmit} = useFormik({
+        initialValues:{
+            username:"",
+            password:""
+         },
+        validationSchema: loginSchema,
+        onSubmit
+    })
 
-    const errClass = errMsg ? "errmsg" : "offscreen"
 
-    if (isLoading) return <p>Loading...</p>
+    if (isSubmitting) return <p>Loading...</p>
   return (
     <Modal {...props}  aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -77,33 +63,36 @@ function LoginModal(props) {
       <Modal.Body className="">
         <Container>
         <main className="login">
-                <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
-
                 <form className="form " onSubmit={handleSubmit}>
                     <label htmlFor="username">Username:</label>
                     <input
-                        className="form__input "
+                        className={errors.username ? 'input-error' : 'form__input'}
                         type="text"
                         id="username"
                         ref={userRef}
-                        value={username}
-                        onChange={handleUserInput}
+                        value={values.username}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                         autoComplete="off"
                         autoFocus
                         required
                     />
+                    {errors.username && touched.username && <p className='input-feedback'>{errors.username}</p>}
 
                     <label htmlFor="password">Password:</label>
                     <input
-                        className="form__input mb-3"
+                        className={errors.password ? 'input-error' : 'form__input'}
                         type="password"
                         id="password"
-                        onChange={handlePwdInput}
-                        value={password}
+                        onChange={handleChange}
+                        value={values.password}
+                        onBlur={handleBlur}
                         required
                     />
+                    {errors.password && touched.password && <p className='input-feedback'>{errors.password}</p>}
                     <div className='d-flex justify-content-center align-items-center'>
-                        <button className="form__submit-button mb-3">Sign In</button>
+                        <button className="form__submit-button mb-3" disabled={isSubmitting}>
+                            Sign In</button>
                     </div>
 
                     <label htmlFor="persist" className="form__persist">

@@ -28,6 +28,7 @@ const EditUserForm = ({ user }) => {
     const navigate = useNavigate()
 
     const [username, setUsername] = useState(user.username)
+    const [email, setEmail] = useState(user.email)
     const [validUsername, setValidUsername] = useState(false)
     const [password, setPassword] = useState('')
     const [validPassword, setValidPassword] = useState(false)
@@ -45,6 +46,7 @@ const EditUserForm = ({ user }) => {
         console.log(isSuccess)
         if (isSuccess || isDelSuccess) {
             setUsername('')
+            setEmail('')
             setPassword('')
             setRoles([])
             navigate('/u/users')
@@ -53,6 +55,7 @@ const EditUserForm = ({ user }) => {
     }, [isSuccess, isDelSuccess, navigate])
 
     const onUsernameChanged = e => setUsername(e.target.value)
+    const onEmailChanged = e => setEmail(e.target.value)
     const onPasswordChanged = e => setPassword(e.target.value)
 
     const onRolesChanged = e => {
@@ -66,10 +69,10 @@ const EditUserForm = ({ user }) => {
 
     const onSaveUserClicked = async (e) => {
         if (password) {
-            await updateUser({ id: user.id, username, password, roles })
+            await updateUser({ id: user.id, username, email,  password, roles })
         } else {
-            await updateUser({ id: user.id, username, roles })
-        }
+            await updateUser({ id: user.id, username, email, roles })
+        } 
     }
 
     const onDeleteUserClicked = async () => {
@@ -88,9 +91,9 @@ const EditUserForm = ({ user }) => {
 
     let canSave
     if (password) {
-        canSave = [roles.length, validUsername, validPassword].every(Boolean) && !isLoading
+        canSave = [roles.length, validUsername, validPassword, email].every(Boolean) && !isLoading
     } else {
-        canSave = [roles.length, validUsername].every(Boolean) && !isLoading
+        canSave = [roles.length, validUsername, email].every(Boolean) && !isLoading
     }
 
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
@@ -139,6 +142,17 @@ const EditUserForm = ({ user }) => {
                     value={username}
                     onChange={onUsernameChanged}
                 />
+                <label className="form__label" htmlFor="email">
+                    Email </label>
+                <input
+                    className={`form__input ${validUserClass}`}
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="off"
+                    value={email}
+                    onChange={onEmailChanged}
+                />
 
                 <label className="form__label" htmlFor="password">
                     Password: <span className="nowrap">[empty = no change]</span> <span className="nowrap">[4-12 chars incl. !@#$%]</span></label>
@@ -158,7 +172,7 @@ const EditUserForm = ({ user }) => {
                     id="roles"
                     name="roles"
                     className={`form__select ${validRolesClass}`}
-                    multiple={true}
+                    // multiple={true}
                     size="3"
                     value={roles}
                     onChange={onRolesChanged}

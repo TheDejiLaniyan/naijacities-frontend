@@ -5,6 +5,7 @@ import Prefetch from './features/auth/Prefetch';
 import PersistLogin from './features/auth/PersistLogin'
 import RequireAuth from './features/auth/RequireAuth';
 import {ROLES} from './config/roles'
+// import ValidatedLoginForm from './features/auth/ValidatedRegister';
 import './index.css'
 import DashLayout from './components/DashLayout'
 import PublicHomePage from './components/PublicHomePage'
@@ -22,6 +23,7 @@ const App = () => (
           <Route path='/' element={<Layout/>}>
             {/* public routes */}
             <Route index element={<PublicHomePage/>}/>
+            {/* <Route path='register' element={<ValidatedLoginForm/>}/> */}
             <Route path='cities'>
               <Route index element={<CitiesHomePage/>}/>
               <Route path=':id' >

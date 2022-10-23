@@ -4,15 +4,16 @@ import {faRightFromBracket, faHouse} from "@fortawesome/free-solid-svg-icons"
 import {  useNavigate, useLocation, Link } from 'react-router-dom'
 import { useSendLogoutMutation } from '../features/auth/authApiSlice'
 import { useEffect, useState } from 'react'
-import LoginModal from './LoginModal'
-import RegisterModal from "./RegisterModal";
+import LoginModal from '../features/auth/LoginModal'
+import RegisterModal from "../features/auth/RegisterModal";
 import NavBarDropdown from './minorComponents/NavBarDropdown'
-import img from '../nationaltheatre.jpg'
+import img from './nigeriamap.png'
 
 const NavBar = () => {
 
     const [registerShow, setRegisterShow] = useState(false);
     const [loginShow, setLoginShow] = useState(false);
+    const onGoHomeClicked = () => navigate('/u')
    
 
   const navigate = useNavigate()
@@ -36,6 +37,19 @@ const NavBar = () => {
   const onLogoutClicked = () => {
     sendLogout()
     navigate('/')
+  }
+
+  let goHomeButton = null
+  if (pathname !== '/') {
+      goHomeButton = (
+          <button
+              className="dash-footer__button icon-button"
+              title="Home"
+              onClick={onGoHomeClicked}
+          >
+              <FontAwesomeIcon icon={faHouse} />
+          </button>
+      )
   }
 
   const logoutButton = (
@@ -102,15 +116,17 @@ const NavBar = () => {
         <header className='navbar-header'>
             <div className='navbar-header__container'>
            <div className='navbar-header__title'>
-            <Image 
+            {/* <Image 
                         src={img}
                         className='px-5'
                         alt='Nigerian Flag'
-                        width="70" height="64"/>
-                    <strong style={{color: 'white'}} 
+                        width="70" height="64"/> */}
+                        {goHomeButton}
+
+                    {/* <strong style={{color: 'white'}} 
                               className='brand-button'
                               onClick={()=> navigate('/u')}>
-                                NaijaCities</strong>
+                                NaijaCities</strong> */}
             </div> 
             <nav className='navbar-header__nav'>
                             {navbarContent}  

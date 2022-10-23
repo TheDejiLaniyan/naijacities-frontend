@@ -67,6 +67,7 @@ return (
               menuVariant="dark"
               title={
                <FontAwesomeIcon icon={faGear}/>
+              // <p className='nav-link'>Settings</p>
             }
             >
                 

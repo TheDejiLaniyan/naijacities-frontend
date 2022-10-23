@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBackward } from "@fortawesome/free-solid-svg-icons"
+import { faBackward, faHouse } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate, useLocation } from 'react-router-dom'
 import useAuth from "../hooks/useAuth"
 
@@ -11,26 +11,29 @@ const Footer = () => {
     const navigate = useNavigate()
     const { pathname } = useLocation()
 
-    const onGoHomeClicked = () => navigate(-1)
+    const onGoBackClicked = () => navigate(-1)
 
-    let goHomeButton = null
+   
+    let goBackButton = null
     if (pathname !== '/') {
-        goHomeButton = (
+        goBackButton = (
             <button
                 className="dash-footer__button icon-button"
-                title="Home"
-                onClick={onGoHomeClicked}
+                title="Back"
+                onClick={onGoBackClicked}
             >
                 <FontAwesomeIcon icon={faBackward} />
             </button>
         )
     }
+    
+    
     const content = (
         <footer className="footer" >
            
             <>
-            <div className="mx-3">
-            {goHomeButton}
+            <div className="mx-3 hidden__footer">
+            {goBackButton}
             </div>
             <div className="mx-3 hidden__footer">
             <p>Current User: {username}</p>            

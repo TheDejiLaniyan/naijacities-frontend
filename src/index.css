@@ -69,11 +69,14 @@ p{
   justify-content: center;
   align-items: center;
   width: 100%;
-  z-index: 3;
+  z-index: 0;
 }
 
 .public__header{
 width: 60%;
+justify-content: center;
+display: inline-flex;
+padding: 15px;
 }
 
 
@@ -81,7 +84,7 @@ width: 60%;
 .public__main,
 .welcome__main{
   flex-grow: 1;
-  min-width: 600px;
+  /* min-width: 600px; */
   border-bottom: 2px solid var(--BORDER-COLOR);
   padding: 1em ;
   margin-top: 4em;
@@ -112,6 +115,7 @@ width: 60%;
   transform: scale(1.2)  !important;
 }
 
+
 .public__footer,
 .footer{
   display: flex;
@@ -135,7 +139,7 @@ width: 60%;
   width: 100%;
   background-color: transparent;
   top: 0;
-  z-index: 1;
+  z-index: 100;
   background-color: var(--BGCOLOR);
   padding: 0 0.5em;
   border-bottom: 1px solid var(--BORDER-COLOR);
@@ -146,6 +150,10 @@ width: 60%;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+}
+
+.navbar-header__title{
+  display: flex;
 }
 
 .navbar-header__container--small{
@@ -213,6 +221,10 @@ width: 60%;
 .nav-link{
   color:var(--COLOR) !important;
   font-size: 1.5rem; 
+ }
+
+ .nav-link-padding{
+  margin: 0px 20px 0px  ;
  }
 
 
@@ -349,6 +361,24 @@ tr {
   outline: 1px solid var(--INPUT-INVALID);
 }
 
+.input-error {
+  border-color: red;
+  padding: 0.5em;
+  border-radius: 15px;
+}
+
+button:disabled{
+  opacity: 0.35;
+}
+
+.input-feedback {
+  color: rgb(235, 54, 54);
+  margin-top: -15px;
+  font-size: 14px;
+  margin-bottom: -10px;
+}
+
+
 .form__checkbox {
   width: 24px;
   height: 24px;
@@ -466,21 +496,16 @@ tr {
     max-height: 90%;
     max-width: 100%;
     object-fit: cover;
-    /* padding: 20px; */
-    /* background-color: #FFF; */
+ 
 }
 
 
 
 #nav-dropdown-dark-example{
-  /* display: none; */
- /* font-size: 2em; */
   color: #000;
 }
 
-#nav-dropdown-dark-example:hover{
-  /* transform: scale(1.2); */
-}
+
 
 
 
@@ -490,6 +515,20 @@ tr {
   .body{
     overflow-y: scroll;
   }
+  p, h3 {
+    font-size: 0.85em;
+  }
+
+
+  .nav-link{
+    font-size: 0.85em;
+  }
+
+  
+
+  .public__main{
+  margin: 5px;
+}
 
  .table{
   padding: 0;
